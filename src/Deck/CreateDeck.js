@@ -27,8 +27,7 @@ function CreateDeck() {
     const submitHandler = (event) => {
         event.preventDefault();
         const abortController = new AbortController();
-        createDeck(formData, abortController.signal).then(history.push("/"))
-        history.goBack();
+        createDeck(formData, abortController.signal).then(history.goBack())
     }
 
     return (

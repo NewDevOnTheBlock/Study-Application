@@ -28,7 +28,7 @@ function EditCard() {
     const submitHandler = (event) => {
         event.preventDefault();
         const abortController = new AbortController()
-        updateCard(formData, abortController.signal).then(history.goBack())
+        updateCard(formData, abortController.signal).then(history.push("/"))
         
     }
 

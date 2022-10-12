@@ -10,7 +10,7 @@ function CardTile({ card }) {
     const handleDelete = () => {
         const abortController = new AbortController()
         window.confirm("Delete this card? \n \n You cannot get it back if you do!") ?
-        deleteCard(cardId, abortController.signal).then(history.goBack()) :
+        deleteCard(cardId, abortController.signal).then(history.push("/")) :
         history.push("/")
     }
 

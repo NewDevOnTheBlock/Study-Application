@@ -15,7 +15,7 @@ function DeckTile({ deck }) {
     }
 
     return (
-        <article className="card">
+        <article className="card" style={{padding: "24px"}}>
             <div className="d-flex justify-content-between">
                 <h3>{deck.name}</h3>
                 <p>{deck.cards.length} cards</p>

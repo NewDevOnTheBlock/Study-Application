@@ -27,7 +27,7 @@ function EditDeck() {
     const submitHandler = (event) => {
         event.preventDefault()
         const abortController = new AbortController();
-        updateDeck(formData, abortController.signal).then(history.goBack());
+        updateDeck(formData, abortController.signal).then(history.push('/'));
     }
 
     if (!formData.id) {

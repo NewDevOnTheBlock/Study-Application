@@ -32,7 +32,6 @@ function AddCard() {
         event.preventDefault();
         const abortController = new AbortController();
         createCard(deckId, formData, abortController.signal).then(history.goBack())
-        
     }
 
     if (!deck.id) {
