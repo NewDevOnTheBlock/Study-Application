@@ -40,7 +40,7 @@ function AddCard() {
     } else {
         return (
             <div>
-                <h2>{deck.name}: Add Card</h2>
+                <h2><span>{deck.name}</span>:<span>Add Card</span></h2>
                 <CardForm 
                     formData={formData}
                     changeHandler={changeHandler}

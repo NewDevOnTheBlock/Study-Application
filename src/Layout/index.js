@@ -1,3 +1,4 @@
+// import react features
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
@@ -14,7 +15,7 @@ import EditCard from "../Card/EditCard";
 
 function Layout() {
   return (
-    <>
+    <main>
       <Header />
       <div className="container">
         <Switch>
@@ -51,7 +52,7 @@ function Layout() {
           </Route>
         </Switch>
       </div>
-    </>
+    </main>
   );
 }
 

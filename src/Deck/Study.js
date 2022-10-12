@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom'
 
-// components 
+// components
 import StudyCard from '../Card/StudyCard'
 
 // functions
@@ -18,10 +18,10 @@ function Study() {
     
     if (!deck.id) {
         return <p>Loading...</p>
-    } else if (deck.cards.length < 3) {     
+    } else if (deck.cards.length < 3) {
         return (
             <div>
-                <h2>Study: {deck.name}</h2>
+                <h2><span>Study</span>:<span>{deck.name}</span></h2>
                 <p>Not enough cards</p>
                 <Link to={`decks/${deckId}/cards/new`}>
                     <button type="button" className="btn btn-primary">+ Add Cards</button>
@@ -31,7 +31,7 @@ function Study() {
     } else {
         return (
             <div>
-                <h2>Study: {deck.name}</h2>
+                <h2><span>Study</span>:<span>{deck.name}</span></h2>
                 <br />
                 <StudyCard cards={deck.cards} />
             </div>
