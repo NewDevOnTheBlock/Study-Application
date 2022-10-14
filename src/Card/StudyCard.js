@@ -50,12 +50,12 @@ function StudyCard({ cards }) {
         )
     } else {
         return (
-            <main className="card">
+            <main className="card" style={{padding: "12px"}}>
                 <div className="d-flex justify-content-between">
                     <p>{currentCard.back}</p>
                     <p>Card {cardIndex + 1} of {cards.length}</p>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex justify-content-between">
                     <button type="button" className="btn btn-secondary" onClick={flipHandler}>Flip</button>
                     <button type="button" className="btn btn-primary" onClick={nextHandler}>Next</button>
                 </div>

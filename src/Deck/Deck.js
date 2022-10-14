@@ -45,7 +45,7 @@ function Deck() {
                     <header>
                         <h2>{deck.name}</h2>
                         <p>{deck.description}</p>
-                        <div className="d-flex">
+                        <div className="d-flex justify-content-between">
                             <Link to={`${url}/edit`}>
                                 <button type="button" className="btn btn-secondary">Edit</button>
                             </Link>

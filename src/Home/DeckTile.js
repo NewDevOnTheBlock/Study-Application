@@ -22,7 +22,7 @@ function DeckTile({ deck }) {
                 <p>{deck.cards.length} cards</p>
             </div>
             <p>{deck.description}</p>
-            <div className="d-flex">
+            <div className="d-flex justify-content-between">
                 <Link to={`/decks/${deck.id}`}>
                     <button type="button" className="btn btn-secondary">View</button>
                 </Link>

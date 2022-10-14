@@ -19,12 +19,12 @@ function CardTile({ card }) {
 
     return (
         <main>
-            <section className="card">
+            <section className="card" style={{padding: "12px"}}>
                 <div className="d-flex justify-content-between">
                     <p>{card.front}</p>
                     <p>{card.back}</p>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex justify-content-between">
                     <Link to={`${url}/cards/${card.id}/edit`}>
                         <button type="button" className="btn btn-secondary">Edit</button>
                     </Link>
