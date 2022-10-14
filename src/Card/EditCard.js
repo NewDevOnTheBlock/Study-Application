@@ -1,52 +1,60 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
-import { readCard, readDeck, updateCard } from '../utils/api';
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams, Link } from "react-router-dom";
+import { readCard, readDeck, updateCard } from "../utils/api";
 
-import CardForm from './CardForm'
+import CardForm from "./CardForm";
 
 function EditCard() {
-    const history = useHistory();
+  const history = useHistory();
 
-    const [deck, setDeck] = useState({})
-    const [formData, setFormData] = useState({})
-    
-    const { deckId, cardId } = useParams();
+  const [deck, setDeck] = useState({});
+  const [formData, setFormData] = useState({});
 
-    useEffect(() => {
-        const abortController = new AbortController()
-        readDeck(deckId, abortController.signal).then(setDeck)
-        readCard(cardId, abortController.signal).then(setFormData)
-    }, [deckId, cardId])
+  const { deckId, cardId } = useParams();
 
-    const changeHandler = ({ target }) => {
-        setFormData({
-            ...formData,
-            [target.name]: target.value,
-        })
-    }
+  useEffect(() => {
+    const abortController = new AbortController();
+    readDeck(deckId, abortController.signal).then(setDeck);
+    readCard(cardId, abortController.signal).then(setFormData);
+    return () => abortController.abort();
+  }, [deckId, cardId]);
 
-    const submitHandler = (event) => {
-        event.preventDefault();
-        const abortController = new AbortController()
-        updateCard(formData, abortController.signal).then(history.push("/"))
-        
-    }
+  const changeHandler = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
 
-    if (!deck.id) {
-        return <p>Loading...</p>
-    } else {
-        return (
-            <div>
-                <h2>{deck.name}: Edit Card</h2>
-                <CardForm 
-                    formData={formData}
-                    changeHandler={changeHandler}
-                    submitHandler={submitHandler}
-                />
-            </div>
-        )
-    }
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const abortController = new AbortController();
+    updateCard(formData, abortController.signal).then(history.goBack());
+  };
 
+  if (!deck.id) {
+    return <p>Loading...</p>;
+  } else {
+    return (
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item">{deck.name}</li>
+            <li className="breadcrumb-item">Edit Card</li>
+          </ol>
+        </nav>
+        <h2>{deck.name}: Edit Card</h2>
+        <CardForm
+          formData={formData}
+          changeHandler={changeHandler}
+          submitHandler={submitHandler}
+        />
+      </div>
+    );
+  }
 }
 
-export default EditCard
+export default EditCard;

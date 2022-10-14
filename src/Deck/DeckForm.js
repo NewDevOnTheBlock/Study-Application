@@ -21,6 +21,7 @@ function DeckForm({ changeHandler, submitHandler, formData }) {
                         placeholder={formData.name}
                         onChange={changeHandler}
                         value={formData.name}
+                        required={true}
                     />
                 </label>
                 <label htmlFor="description" className="d-flex flex-column">
@@ -32,6 +33,7 @@ function DeckForm({ changeHandler, submitHandler, formData }) {
                         placeholder={formData.description}
                         onChange={changeHandler}
                         value={formData.description}
+                        required={true}
                     />
                 </label>
                 <div className="d-flex">

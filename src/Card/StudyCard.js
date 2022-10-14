@@ -1,14 +1,15 @@
+
 import React, {useEffect, useState} from 'react'
 import { useHistory } from 'react-router-dom'
 // functions
 import { readCard } from '../utils/api'
 
 function StudyCard({ cards }) {
-    const [side, setSide] = useState(true)
+    const [side, setSide] = useState(true);
     const [cardIndex, setCardIndex] = useState(0);
     const [currentCard, setCurrentCard] = useState(cards[0])
 
-    const cardId = cards[cardIndex].id
+    const cardId = cards[cardIndex].id;
     const history = useHistory();
 
     const nextHandler = () => {
@@ -25,9 +26,10 @@ function StudyCard({ cards }) {
     }
     
     useEffect(() => {
-        setCurrentCard([])
+        setCurrentCard({})
         const abortController = new AbortController()
         readCard(cardId, abortController.signal).then(setCurrentCard)
+        return () => abortController.abort()
     },[cardId])
 
     const flipHandler = () => {

@@ -19,6 +19,7 @@ function CardForm({ formData, changeHandler, submitHandler }) {
                     placeholder={formData.front}
                     onChange={changeHandler}
                     value={formData.front}
+                    required
                 />
             </label>
             <label htmlFor="back" className="d-flex flex-column">
@@ -30,6 +31,7 @@ function CardForm({ formData, changeHandler, submitHandler }) {
                     placeholder={formData.back}
                     onChange={changeHandler}
                     value={formData.back}
+                    required
                 />
             </label>
             <div>

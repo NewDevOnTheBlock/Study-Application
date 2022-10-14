@@ -7,11 +7,14 @@ function CardTile({ card }) {
     const { url } = useRouteMatch();
     const cardId = card.id
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         const abortController = new AbortController()
-        window.confirm("Delete this card? \n \n You cannot get it back if you do!") ?
-        deleteCard(cardId, abortController.signal).then(history.push("/")) :
-        history.push("/")
+        if (window.confirm("Delete this card? \n \n You cannot get it back if you do!")) {
+            await deleteCard(cardId, abortController.signal)
+            history.go(0)
+        } else {
+            history.push("/")
+        }
     }
 
     return (

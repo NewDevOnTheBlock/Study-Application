@@ -13,16 +13,21 @@ function Deck() {
     const { url } = useRouteMatch();
     const history = useHistory();
     
+    
     useEffect(() => {
+        setDeck([])
         const abortController = new AbortController();
         readDeck(deckId, abortController.signal).then(setDeck)
     }, [deckId])
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         const abortController = new AbortController()
-        window.confirm("Delete this deck? \n \n You cannot get it back if you do!") ? 
-        deleteDeck(deckId, abortController.signal).then(history.push("/")) :
-        history.push("/")
+        if (window.confirm("Delete this deck? \n \n You cannot get it back if you do!")) {
+            await deleteDeck(deckId, abortController.signal)
+            history.push("/")
+        } else {
+            history.go(0)
+        }
     }
 
     if (!deck.id) {
@@ -31,6 +36,12 @@ function Deck() {
         return (
             <Route path={`${url}`}>
                 <section>
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                            <li className="breadcrumb-item">{deck.name}</li>
+                        </ol>
+                    </nav>
                     <header>
                         <h2>{deck.name}</h2>
                         <p>{deck.description}</p>

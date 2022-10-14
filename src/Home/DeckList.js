@@ -1,20 +1,12 @@
-// React
-import React, { useState, useEffect } from 'react';
+// React features
+import React from 'react';
 import { Link } from 'react-router-dom'
-// functions for API
-import { listDecks } from '../utils/api';
 // components
 import DeckTile from './DeckTile'
 
-function DeckList() {
-    const [allDecks, setAllDecks] = useState([]);
+function DeckList({ decks }) {
 
-    useEffect(() => {
-        const abortController = new AbortController();
-        listDecks(abortController.signal).then(setAllDecks)
-    }, [])
-
-    const listOfDecks = allDecks.map((deck, index) => <DeckTile key={index} deck={deck}/>)
+    const listOfDecks = decks.map((deck, index) => <DeckTile key={index} deck={deck} />)
 
     return (
         <section>

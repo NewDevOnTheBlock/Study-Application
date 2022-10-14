@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Link, useHistory } from 'react-router-dom'
+
 import { deleteDeck } from '../utils/api'
 
 function DeckTile({ deck }) {
@@ -10,7 +11,7 @@ function DeckTile({ deck }) {
     const handleDelete = () => {
         const abortController = new AbortController()
         window.confirm("Delete this deck? \n \n You cannot get it back if you do!") ?
-        deleteDeck(deckId, abortController.signal).then(history.push("/")) :
+        deleteDeck(deckId, abortController.signal).then(history.go(0)) :
         history.push("/")
     }
 
