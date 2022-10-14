@@ -10,9 +10,12 @@ function DeckList({ decks }) {
 
     return (
         <section>
-            <Link to="/decks/new">
-                <button type="button" className="btn btn-primary">+ Create Deck</button>
-            </Link>
+            <div>
+                <Link to="/decks/new">
+                    <button type="button" className="btn btn-primary">+ Create Deck</button>
+                </Link>
+            </div>
+            
             <br />
             {listOfDecks}
         </section>
